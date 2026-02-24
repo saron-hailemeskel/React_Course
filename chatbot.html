@@ -1,1 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
 
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+      // first component
+      function ChatInput() {
+        return (
+          <>
+            {/* can't return 2 components without wrapping them in a parent component */}
+            <input placeholder="Send a message to ChatBot" size="30" />
+            <button>Send</button>
+          </>
+        );
+      }
+
+      function ChatMessage() {
+        return (
+          <>
+           {/* for layout */}
+            <div>
+              hello Chatbot
+              <img src="image.png " width="50" />
+            </div>
+          </>
+        );
+      }
+
+      const app = (
+        <>
+          {/* calling a function and creating our own html tag */}
+          {/* <ChatInput /> */}
+          {/* <ChatInput></ChatInput> */}
+
+          {ChatInput()}
+          {/* we can add also attributes*/}
+          <ChatMessage  message="hello chatbot"/>
+        </>
+      );
+
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(app);
+    </script>
+  </body>
+</html>
