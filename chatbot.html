@@ -16,38 +16,77 @@
         return (
           <>
             {/* can't return 2 components without wrapping them in a parent component */}
-            <input placeholder="Send a message to ChatBot" size="30" />
+            <input 
+              placeholder="Send a message to ChatBot" 
+              size="30" 
+            />
             <button>Send</button>
           </>
         );
       }
+       {/* function ChatMessage({message , sender})------this could be enough*/}
+      function ChatMessage(props) {
+        {/*destructuring */}
+        {/*const {message, sender} = props;*/} 
+         const message = props.message;
+         const sender= props.sender; 
 
-      function ChatMessage() {
+        //  if (sender === "robot") { 
+        // return(
+        //   <>
+        //    {/* for layout */}
+        //     <div>
+        //      <img src=" image copy.png " width="50" />
+        //      {message}
+        //     </div>
+        //   </>
+        //     );
+        //  }
+
         return (
           <>
            {/* for layout */}
             <div>
-              hello Chatbot
-              <img src="image.png " width="50" />
+                {/* if 1st then do 2nd--&& guard operator */}
+             {sender ==="robot"&& (
+                <img src=" image copy.png " width="50" />
+            )}
+             {message}
+             {sender ==="user" && (
+                <img src="image.png " width="50" />
+            )}
             </div>
           </>
         );
       }
+     function App() {
+        return (
+          <>
+            <ChatInput />
+            <ChatMessage  message="hello chatbot" sender="user"/>
+            <ChatMessage  message="Hello! How can I help you" sender="robot"/>
+            <ChatMessage  message="What day is it?" sender="user"/>
+            <ChatMessage  message="Today is feburary 27" sender="robot"/>
+          </>
+        );
+      }
+    //   const app = (
+    //     <>
+    //       {/* calling a function and creating our own html tag */}
+    //       {/* <ChatInput /> */}
+    //       {/* <ChatInput></ChatInput> */}
 
-      const app = (
-        <>
-          {/* calling a function and creating our own html tag */}
-          {/* <ChatInput /> */}
-          {/* <ChatInput></ChatInput> */}
-
-          {ChatInput()}
-          {/* we can add also attributes*/}
-          <ChatMessage  message="hello chatbot"/>
-        </>
-      );
+    //       {ChatInput()}
+    //       {/* we can add also attributes*/}
+    //       <ChatMessage  message="hello chatbot" sender="user"/>
+    //       <ChatMessage  message="Hello! How can I help you" sender="robot"/>
+    //       <ChatMessage  message="What day is it?" sender="user"/>
+    //       <ChatMessage  message="Today is feburary 27" sender="robot"/>
+    //     </>
+    //   );
 
       const container = document.querySelector(".js-container");
-      ReactDOM.createRoot(container).render(app);
+      ReactDOM.createRoot(container).render(<App/>);
     </script>
   </body>
 </html>
